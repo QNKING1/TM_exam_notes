@@ -1,0 +1,710 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ITC 511 - Technology Management Exam Notes</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75' fill='%23667eea'>T</text></svg>">
+  <style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { 
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+.container { 
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+.tabs { 
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 10px; 
+  margin-bottom: 2rem;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 1rem;
+}
+.tab { 
+  padding: 10px 18px; 
+  border-radius: 8px; 
+  border: none;
+  background: #f3f4f6;
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer; 
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.tab::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  transition: left 0.5s;
+}
+.tab:hover {
+  background: #e5e7eb;
+  transform: translateY(-2px);
+}
+.tab.active { 
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+.tab.active::before { left: 100%; }
+.section { 
+  display: none;
+  animation: fadeIn 0.5s ease-in;
+}
+.section.active { 
+  display: block;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.card { 
+  background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+  border: 1px solid #e5e7eb;
+  border-radius: 12px; 
+  padding: 1.25rem 1.5rem; 
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+.card:hover {
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
+  transform: translateY(-2px);
+  border-color: #d1d5db;
+}
+.card-title { 
+  font-size: 16px; 
+  font-weight: 600; 
+  color: #1f2937;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.card-sub { 
+  font-size: 13px; 
+  color: #9ca3af;
+  margin-bottom: 12px;
+  font-style: italic;
+}
+.point { 
+  font-size: 13px; 
+  color: #374151;
+  padding: 8px 0; 
+  border-bottom: 1px solid #f3f4f6;
+  line-height: 1.7;
+  transition: color 0.2s ease;
+}
+.point:last-child { border-bottom: none; }
+.point:hover { color: #667eea; }
+.badge { 
+  display: inline-block; 
+  font-size: 11px; 
+  font-weight: 600;
+  padding: 4px 10px; 
+  border-radius: 20px; 
+  margin-left: 8px; 
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: white;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+}
+.def { 
+  background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%);
+  border-left: 4px solid #667eea;
+  padding: 12px 16px; 
+  border-radius: 8px;
+  font-size: 13px; 
+  color: #1f2937;
+  margin-bottom: 12px; 
+  line-height: 1.7;
+  font-weight: 500;
+}
+.grid2 { 
+  display: grid; 
+  grid-template-columns: 1fr 1fr; 
+  gap: 15px;
+}
+.grid2 > div {
+  background: #f9fafb;
+  padding: 12px;
+  border-radius: 8px;
+  border-left: 3px solid #667eea;
+}
+@media(max-width: 600px) { 
+  .grid2 { grid-template-columns: 1fr; }
+  .container { padding: 1.5rem 1rem; }
+  .tabs { gap: 8px; }
+}
+h3 { 
+  font-size: 12px; 
+  font-weight: 700;
+  color: #667eea;
+  text-transform: uppercase; 
+  letter-spacing: 0.08em; 
+  margin: 1.2rem 0 0.8rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e5e7eb;
+}
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 3px solid #e5e7eb;
+}
+.header h1 {
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+.header p {
+  color: #6b7280;
+  font-size: 1rem;
+}
+.nav-links {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.nav-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+.nav-links a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+.search-box {
+  margin-bottom: 2rem;
+  position: relative;
+}
+.search-box input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+.search-box input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+.search-box input::placeholder {
+  color: #d1d5db;
+}
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+.back-to-top:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+}
+.back-to-top.show {
+  display: flex;
+}
+.highlight {
+  background: linear-gradient(120deg, rgba(245, 158, 11, 0.2) 0%, rgba(102, 126, 234, 0.2) 100%);
+  padding: 2px 4px;
+  border-radius: 3px;
+}
+@media(max-width: 768px) {
+  .header h1 {
+    font-size: 1.8rem;
+  }
+  .nav-links {
+    gap: 0.5rem;
+  }
+  .nav-links a {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  .back-to-top {
+    width: 45px;
+    height: 45px;
+    bottom: 20px;
+    right: 20px;
+  }
+}
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>📚 ITC 511 Exam Notes</h1>
+    <p>Technology Management Study Guide</p>
+  </div>
+
+  <div class="nav-links">
+    <a href="index.html">📖 Notes</a>
+    <a href="tm_mind_maps_enhanced.html">🧠 Mind Maps</a>
+  </div>
+
+  <div class="search-box">
+    <input type="text" id="searchInput" placeholder="🔍 Search notes... (try: TM, innovation, patent, etc.)">
+  </div>
+
+<div class="tabs" id="tabs">
+  <div class="tab active" onclick="show('intro')">Intro & Definitions</div>
+  <div class="tab" onclick="show('tm')">TM Framework</div>
+  <div class="tab" onclick="show('tools')">TM Tools</div>
+  <div class="tab" onclick="show('innovation')">Innovation</div>
+  <div class="tab" onclick="show('knowledge')">Knowledge & Learning</div>
+  <div class="tab" onclick="show('protection')">Protection & Selection</div>
+</div>
+
+<div id="intro" class="section active">
+  <div class="card">
+    <div class="card-title">Technology — definition</div>
+    <div class="def">Collection of techniques, skills, methods, and processes used in production of goods/services or accomplishment of objectives.</div>
+    <div class="point">Simplest form = development and use of basic tools</div>
+    <div class="point">Application of science & engineering to enhance human conditions</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Management — definition</div>
+    <div class="def">Process of Planning, Organizing, Coordinating, Leading, and Controlling</div>
+    <div class="point">Setting strategy + coordinating employee efforts to accomplish objectives</div>
+    <div class="point">Uses financial, natural, technological, and human resources</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Technology Management — definition <span class="badge">Important</span></div>
+    <div class="def">A set of management disciplines that allows organizations to manage their technological fundamentals to create competitive advantage. (NRC, 1987)</div>
+    <div class="point">Includes: planning, directing, control, coordination of technology development</div>
+    <div class="point">Has Hard aspects (science/engineering) and Soft aspects (processes)</div>
+    <div class="point">Aims to maximize cost-effectiveness of technology investments</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Science vs Technology</div>
+    <div class="point">Science = study of WHY natural things happen</div>
+    <div class="point">Technology = USE of knowledge to turn resources into goods/services</div>
+    <div class="point">Technology word comes from Greek: techne (art) + logos (logic/science)</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Why study Technology?</div>
+    <div class="point">Technology satisfies basic human needs and wants</div>
+    <div class="point">Responsible for great deal of human progress</div>
+    <div class="point">Key tool to gain competitive advantage in global economy</div>
+    <div class="point">Application of technology (not just development) = key to success</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Challenges of TM</div>
+    <div class="point">Increasing cost</div>
+    <div class="point">Complexity</div>
+    <div class="point">Pace of technology advancement</div>
+    <div class="point">Diversity of technology sources</div>
+    <div class="point">Globalized competition</div>
+    <div class="point">Impact of Information Technology</div>
+  </div>
+</div>
+
+<div id="tm" class="section">
+  <div class="card">
+    <div class="card-title">TM Framework — 6 Core Activities <span class="badge">Important</span></div>
+    <div class="card-sub">Remember: A E I L P S — Acquisition, Exploitation, Identification, Learning, Protection, Selection</div>
+    <div class="point">These 6 activities are linked to 3 core business processes: Strategy, Innovation, and Operation</div>
+  </div>
+  <div class="card">
+    <div class="card-title">1. Acquisition</div>
+    <div class="def">How a company obtains the technologies it needs for business</div>
+    <div class="point">Internal Development (R&D) — creating technology in-house</div>
+    <div class="point">Co-Development — joint development with partner</div>
+    <div class="point">External Acquisition — purchasing/licensing from outside</div>
+    <h3>R&D Goals</h3>
+    <div class="point">Generate new knowledge and technical ideas (research)</div>
+    <div class="point">Transform ideas into working products/services (development)</div>
+    <h3>External Acquisition Options</h3>
+    <div class="point">Purchasing, Subcontracting, Licensing, Alliances, M&A (Merger & Acquisition)</div>
+  </div>
+  <div class="card">
+    <div class="card-title">2. Exploitation</div>
+    <div class="def">Achieving profit or benefits from technology</div>
+    <div class="point">Commercialization — transferring invention to sellable product</div>
+    <div class="point">Technology Transfer — moving technology from creator to applier</div>
+    <div class="point">Technology Utilization — maintaining, adjusting, improving technologies</div>
+  </div>
+  <div class="card">
+    <div class="card-title">3. Identification</div>
+    <div class="def">Spotting technologies and their applications to the business</div>
+    <div class="point">Technology planning, forecasting, foresight, road mapping, intelligence</div>
+    <div class="point">Includes market changes + technological developments</div>
+    <h3>Classification of Technology</h3>
+    <div class="point">Enabling → Key → Pacing → Emerging</div>
+    <h3>Technology Roadmapping — 2 forms</h3>
+    <div class="point">Planning: How to reach a goal? (market focus, customer driven)</div>
+    <div class="point">Forecasting: What opportunities could arise? (technology focus, open ended)</div>
+  </div>
+</div>
+
+<div id="tools" class="section">
+  <div class="card">
+    <div class="card-title">6 Main TM Tools <span class="badge">Important</span></div>
+    <div class="card-sub">"Man is tool using animal — without tool he is nothing" — Thomas Carlyle</div>
+    <div class="point">1. Patent Analysis</div>
+    <div class="point">2. Portfolio Management</div>
+    <div class="point">3. Road Mapping</div>
+    <div class="point">4. S-Curve</div>
+    <div class="point">5. Stage Gate</div>
+    <div class="point">6. Value Analysis and Innovation</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Patent Analysis</div>
+    <div class="def">A patent = rights granted by Government to inventor for a fixed period (generally 20 years, renewed every 5 years)</div>
+    <div class="point">Patent Search = access patentability, novelty, infringement, validity</div>
+    <div class="point">Patent Analysis = convert statistical patent info into useful strategic info</div>
+    <h3>4 Steps of Patent Analysis</h3>
+    <div class="point">1. Patent search → 2. Categorization → 3. Visualization → 4. Integration into strategic decisions</div>
+    <h3>Used for TM activities</h3>
+    <div class="point">Acquisition, Identification, Protection</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Portfolio Management</div>
+    <div class="def">Centralized management of projects/programs to achieve strategic business goals</div>
+    <div class="point">Portfolio = bundle of projects/programs grouped together</div>
+    <div class="point">Project = definable objective under 3 constraints: Time, Cost, Quality</div>
+    <h3>3 Steps</h3>
+    <div class="point">1. Individual project analysis → 2. Optimal portfolio selection → 3. Portfolio adjustments</div>
+    <h3>Used for TM activities</h3>
+    <div class="point">Acquisition, Learning, Selection</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Road Mapping</div>
+    <div class="def">An extended look at the future of a field using collective knowledge of experts — shown as a graphical chart</div>
+    <div class="point">Provides high-level summary of strategic elements (one page overview)</div>
+    <div class="point">Major benefit = communication during development and dissemination</div>
+    <div class="point">Addresses: Identification, Exploitation, Learning</div>
+  </div>
+  <div class="card">
+    <div class="card-title">S-Curve</div>
+    <div class="def">Growth curve — analogy with biological life cycle of a technology</div>
+    <h3>3 Steps</h3>
+    <div class="point">1. Collect longitudinal data on performance metric</div>
+    <div class="point">2. Observe evolution and plot the curve</div>
+    <div class="point">3. Use curve for decision making</div>
+    <div class="point">Used for: Acquisition, Exploitation, Identification</div>
+  </div>
+</div>
+
+<div id="innovation" class="section">
+  <div class="card">
+    <div class="card-title">TM vs Innovation Management <span class="badge">Important</span></div>
+    <div class="point">Innovation = doing something new (product, process, service) within a firm</div>
+    <div class="point">Innovation is NOT limited to technology — can be organizational</div>
+    <div class="point">Open Innovation = companies can buy/license from other companies too</div>
+    <div class="point">TM and Innovation overlap ONLY when there is a technology innovation</div>
+    <div class="point">Otherwise they have separate disciplinary body of knowledge</div>
+  </div>
+  <div class="card">
+    <div class="card-title">4 Types of Innovation (Oslo Manual 1995) <span class="badge">Important</span></div>
+    <div class="point">Product Innovation — new/improved good or service (specs, materials, components)</div>
+    <div class="point">Process Innovation — new/improved production or delivery method (technique, equipment, software)</div>
+    <div class="point">Marketing Innovation — new marketing method (design, packaging, pricing, placement)</div>
+    <div class="point">Organizational Innovation — new organizational method to reduce costs, improve satisfaction</div>
+  </div>
+  <div class="card">
+    <div class="card-title">3 Newer Innovation Types</div>
+    <div class="card-sub">Introduced in recent years, relevant to technology managers</div>
+    <div class="point">Eco-Innovation — products/processes contributing to sustainable development with minimal resources and toxic releases</div>
+    <div class="point">Reverse Innovation — innovate in developing markets (China, India) then distribute globally</div>
+    <div class="point">Design-Driven Innovation — based on user experience and meaning; creates new markets. Example: Apple iPod</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Innovation Management</div>
+    <div class="def">Successful implementation of novel ideas forming different innovation types within an organization</div>
+    <div class="point">Comprises all steps: development, introduction, implementation of new products/processes</div>
+    <div class="point">Allows organizations to respond to opportunities using creativity</div>
+    <div class="point">Includes planning, decision-making, organizational and control tasks</div>
+    <div class="point">Example: Amazon book delivery over Internet (Service Innovation)</div>
+  </div>
+</div>
+
+<div id="knowledge" class="section">
+  <div class="card">
+    <div class="card-title">4. Learning <span class="badge">Important</span></div>
+    <div class="def">Ability to learn and continuously improve technological capability — crucial to TM</div>
+    <div class="point">Occurs at every level in an organization</div>
+    <div class="point">Learning = a dynamic capability</div>
+    <div class="point">= acquisition/use of existing knowledge + creation of new knowledge to improve economic performance</div>
+  </div>
+  <div class="card">
+    <div class="card-title">5 Types of Learning</div>
+    <div class="point">Learn by Doing — manufacturing activities, skill acquisition, learning curve</div>
+    <div class="point">Learn by Searching — commercial dimension; searching product characteristics required by market</div>
+    <div class="point">Scientific Learning — basic research, acquiring fundamental laws of science</div>
+    <div class="point">Learn by Using — feedback from customers on new product performance</div>
+    <div class="point">Spillover Learning — knowledge from journals, experienced personnel, university research</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Knowledge <span class="badge">Important</span></div>
+    <div class="def">Knowledge = know-what (recognition) + know-how (capacity to act) + know-why (understanding)</div>
+    <div class="grid2">
+      <div>
+        <div class="point" style="font-weight:500;">Tacit Knowledge</div>
+        <div class="point">Difficult to transfer</div>
+        <div class="point">Hidden, unspoken</div>
+        <div class="point">From personal experience</div>
+        <div class="point">Example: making a cookie</div>
+      </div>
+      <div>
+        <div class="point" style="font-weight:500;">Explicit Knowledge</div>
+        <div class="point">Tangible</div>
+        <div class="point">Can be documented</div>
+        <div class="point">Diagrams, books, charts</div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">Tacit ↔ Explicit Interactions (SECI) <span class="badge">Important</span></div>
+    <div class="point">Socialization — sharing tacit knowledge between individuals (tacit → tacit)</div>
+    <div class="point">Externalization — converting tacit to explicit (tacit → explicit)</div>
+    <div class="point">Combination — converting explicit to more complex explicit (explicit → explicit)</div>
+    <div class="point">Internalization — converting explicit to tacit (explicit → tacit)</div>
+  </div>
+</div>
+
+<div id="protection" class="section">
+  <div class="card">
+    <div class="card-title">5. Protection</div>
+    <div class="def">Protecting knowledge and expertise embedded in products, services, and manufacturing systems</div>
+    <div class="point">Legally protected assets — e.g. Patents</div>
+    <div class="point">Intangible assets — e.g. Know-how</div>
+    <h3>Intangible Assets — 3 categories</h3>
+    <div class="point">Competencies (skill, know-how, leadership)</div>
+    <div class="point">Innovation and entrepreneurship</div>
+    <div class="point">Ability to adapt</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Intellectual Property (IP)</div>
+    <div class="point">IP laws vary from country to country</div>
+    <div class="point">Harmonized through international treaties</div>
+    <div class="point">Key treaty: WTO Agreement, 1994</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Technology Transfer (TT)</div>
+    <div class="def">Process by which technology, knowledge, and information developed by a creator is applied and utilized by an applier. (Khalil, 2000)</div>
+    <h3>5 Types</h3>
+    <div class="point">Company to Company</div>
+    <div class="point">Non-profit to Company</div>
+    <div class="point">R&D to Manufacturing (within same org)</div>
+    <div class="point">Individual to Department</div>
+    <div class="point">International Technology Transfer</div>
+    <h3>Issues in TT</h3>
+    <div class="point">Integration, Utilization, Organizational issues, Deal & Negotiations, Commercialization, Regulations, Learning (absorptive capacity)</div>
+  </div>
+  <div class="card">
+    <div class="card-title">6. Selection</div>
+    <div class="def">Selecting technologies that help organizations achieve their ultimate goals</div>
+    <div class="point">Important process of TM</div>
+    <div class="point">Involves evaluating and choosing from available technology options</div>
+  </div>
+  <div class="card">
+    <div class="card-title">TM Key Concepts (Typical)</div>
+    <div class="point">Technology Strategy — logic/role of technology in organization</div>
+    <div class="point">Technology Forecasting — identifying possible relevant technologies</div>
+    <div class="point">Technology Roadmap — mapping technologies to business/market needs</div>
+    <div class="point">Technology Project Portfolio — set of projects under development</div>
+    <div class="point">Technology Portfolio — set of technologies currently in use</div>
+  </div>
+</div>
+</div>
+
+<script>
+// Tab switching function
+function show(id) {
+  const sections = document.querySelectorAll('.section');
+  const tabs = document.querySelectorAll('.tab');
+  const clickedTab = event?.currentTarget || event?.target;
+  
+  // Fade out animation
+  sections.forEach(s => {
+    if (s.classList.contains('active')) {
+      s.style.opacity = '0';
+      s.style.transform = 'translateY(-10px)';
+    }
+  });
+  
+  // Trigger layout shift
+  setTimeout(() => {
+    sections.forEach(s => s.classList.remove('active'));
+    tabs.forEach(t => t.classList.remove('active'));
+    
+    const activeSection = document.getElementById(id);
+    
+    if (activeSection) {
+      activeSection.classList.add('active');
+      activeSection.style.opacity = '1';
+      activeSection.style.transform = 'translateY(0)';
+    }
+    
+    if (clickedTab) {
+      clickedTab.classList.add('active');
+    }
+  }, 150);
+  
+  // Clear search on tab switch
+  const searchInput = document.getElementById('searchInput');
+  if (searchInput) searchInput.value = '';
+}
+
+// Search functionality
+function setupSearch() {
+  const searchInput = document.getElementById('searchInput');
+  if (!searchInput) return;
+  
+  searchInput.addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase().trim();
+    const cards = document.querySelectorAll('.card');
+    let matchCount = 0;
+    
+    cards.forEach(card => {
+      const text = card.textContent.toLowerCase();
+      const visible = query === '' || text.includes(query);
+      card.style.display = visible ? 'block' : 'none';
+      if (visible) matchCount++;
+      
+      if (visible && query !== '') {
+        // Highlight matching text
+        const cardText = card.innerHTML;
+        const regex = new RegExp(`(${query})`, 'gi');
+        card.innerHTML = cardText.replace(regex, '<span class="highlight">$1</span>');
+      }
+    });
+    
+    // Show no results message if needed
+    const activeSection = document.querySelector('.section.active');
+    if (activeSection) {
+      let noResults = activeSection.querySelector('.no-results');
+      if (noResults) noResults.remove();
+      
+      if (matchCount === 0 && query !== '') {
+        noResults = document.createElement('div');
+        noResults.className = 'no-results';
+        noResults.innerHTML = `<p style="text-align: center; color: #9ca3af; padding: 2rem;">No results found for "<strong>${query}</strong>"</p>`;
+        activeSection.appendChild(noResults);
+      }
+    }
+  });
+}
+
+// Back to top button
+function setupBackToTop() {
+  const backToTopBtn = document.createElement('button');
+  backToTopBtn.className = 'back-to-top';
+  backToTopBtn.innerHTML = '↑';
+  backToTopBtn.title = 'Back to top';
+  document.body.appendChild(backToTopBtn);
+  
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      backToTopBtn.classList.add('show');
+    } else {
+      backToTopBtn.classList.remove('show');
+    }
+  });
+  
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+// Initialize section styles
+window.addEventListener('load', () => {
+  const activeSection = document.querySelector('.section.active');
+  if (activeSection) {
+    activeSection.style.opacity = '1';
+    activeSection.style.transform = 'translateY(0)';
+    activeSection.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+  }
+  
+  // Add transition to all sections
+  document.querySelectorAll('.section').forEach(s => {
+    s.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+  });
+  
+  setupSearch();
+  setupBackToTop();
+});
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  const tabs = Array.from(document.querySelectorAll('.tab'));
+  const activeTab = document.querySelector('.tab.active');
+  const activeIndex = tabs.indexOf(activeTab);
+  
+  // Arrow keys for tab navigation
+  if (e.key === 'ArrowRight' && activeIndex < tabs.length - 1) {
+    tabs[activeIndex + 1].click();
+  } else if (e.key === 'ArrowLeft' && activeIndex > 0) {
+    tabs[activeIndex - 1].click();
+  }
+  
+  // Ctrl/Cmd + F for search focus
+  if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+    e.preventDefault();
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) searchInput.focus();
+  }
+});
+
+// Smooth scroll for links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
